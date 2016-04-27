@@ -6,6 +6,7 @@
 package com.nackademin.simonborgstromin2javabackend.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -67,6 +68,13 @@ public class Todo implements Serializable {
         this.id = id;
         this.description = description;
         this.duedate = duedate;
+    }
+
+    public Todo(String description, Date duedate, boolean done) {
+      this.description = description;
+      this.duedate = duedate;
+      this.done = done;
+      
     }
 
     public Integer getId() {
