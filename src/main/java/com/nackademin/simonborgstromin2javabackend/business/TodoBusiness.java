@@ -9,6 +9,7 @@ import com.nackademin.simonborgstromin2javabackend.dao.TodoFacade;
 import com.nackademin.simonborgstromin2javabackend.entities.Todo;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -36,11 +37,15 @@ public class TodoBusiness {
         tf.remove(todo);
     }
     
-    public void findAll(){
-        tf.findAll();
+    public List<Todo> findAll(){
+        return tf.findAll();
     }
     public void findTodo(Todo todo){
         tf.find(todo);
+    }
+
+    public Todo findById(int i) {
+      return tf.find(i);
     }
     
   
