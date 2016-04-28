@@ -12,16 +12,12 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -68,16 +64,21 @@ public class TodoServlet extends HttpServlet {
             }
 
         } else if (keyString != null) {
-             Todo todo = tb.findById((Integer.valueOf(KEY)+1));
+             Todo todo = tb.findById((Integer.valueOf(keyString)+1));
+             System.out.println(keyString + "keyString");
+             System.out.println(todo.toString());
             if (duedate != null) {
                  try {
                      todo.setDuedate(stringToDate(duedate));
+                     tb.update(todo);
+                     System.out.println(todo.getDuedate());
                  } catch (ParseException ex) {
                      Logger.getLogger(TodoServlet.class.getName()).log(Level.SEVERE, null, ex);
                  }
             }
             if (doneString != null) {
                    todo.setDone(Boolean.TRUE);
+                   tb.update(todo);
 
             }
         }
@@ -118,8 +119,12 @@ public class TodoServlet extends HttpServlet {
     }
     
     private String todoToJson(Todo todo){
+        if (todo.getDone())
          return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+todo.getDuedate()+"\""+
-                ","+"\"Done\""+":\""+todo.getDone()+"\"}";
+                ","+"\"Done\""+":\""+"checked"+"\"}";
+        else
+             return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+todo.getDuedate()+"\""+
+                ","+"\"Done\""+":\""+""+"\"}";
     }
 
 }

@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $('#submitbtn').click(function (event) {
         $.ajax({
-            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/myservlet',
+            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/myservlet',
             type: 'post',
             // dataType: 'json',
             data: $('#form').serialize(),
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 function updateList() {
     $("#table tbody").empty();
-    $.getJSON("http://localhost:8080/SimonBorgstromIn2JavaBackend/myservlet", function (data) {
+    $.getJSON("http://localhost:12683/SimonBorgstromIn2JavaBackend/myservlet", function (data) {
         $.each(data, function (i, fromservlet) {
             $("#table tbody").append("<tr><td>" + fromservlet.Description +
                     "</td><td id=\"editdate\">" + fromservlet.Duedate + "</td><td id=\"inlineCheckbox\">" +
@@ -35,7 +35,7 @@ $(document).ready(function () {
         var text = prompt("Change date?", "new date");
         //  $(this).html(text);
         $.ajax({
-            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/myservlet',
+            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/myservlet',
             type: 'post',
             // dataType: 'json',
             data: {'key': $(this).parent().index()
@@ -51,7 +51,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#table").delegate('#inlineCheckbox', 'click', function (e) {
         $.ajax({
-            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/myservlet',
+            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/myservlet',
             type: 'post',
             // dataType: 'json',
             data: {'key': $(this).parent().index()
