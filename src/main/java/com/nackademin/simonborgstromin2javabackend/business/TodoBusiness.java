@@ -5,7 +5,7 @@
  */
 package com.nackademin.simonborgstromin2javabackend.business;
 
-import com.nackademin.simonborgstromin2javabackend.dao.TodoFacade;
+import com.nackademin.simonborgstromin2javabackend.facades.TodoFacade;
 import com.nackademin.simonborgstromin2javabackend.entities.Todo;
 import java.time.LocalDate;
 import java.util.Date;

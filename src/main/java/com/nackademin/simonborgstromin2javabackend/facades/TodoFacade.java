@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nackademin.simonborgstromin2javabackend.dao;
+package com.nackademin.simonborgstromin2javabackend.facades;
 
 import com.nackademin.simonborgstromin2javabackend.entities.Todo;
 import javax.ejb.Stateless;

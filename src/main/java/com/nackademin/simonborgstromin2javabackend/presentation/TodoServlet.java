@@ -9,10 +9,6 @@ import com.nackademin.simonborgstromin2javabackend.business.TodoBusiness;
 import com.nackademin.simonborgstromin2javabackend.entities.Todo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,10 +36,6 @@ public class TodoServlet extends HttpServlet {
     public static final String KEY = "key";
     private int count = 0;
 
-    private Connection connect = null;
-    private PreparedStatement pstm = null;
-    private ResultSet rset = null;
-    private Statement stm = null;
 
     @Inject
     TodoBusiness tb;
@@ -55,7 +47,7 @@ public class TodoServlet extends HttpServlet {
         String duedate = req.getParameter(DUEDATE);
         String doneString = req.getParameter(DONE);
         String keyString = req.getParameter(KEY);
-        System.out.println("connected");
+        System.out.println("connected" +keyString);
         if (keyString == null) {
             try {
                 tb.addTodo(description, stringToDate(duedate), false);
@@ -65,9 +57,10 @@ public class TodoServlet extends HttpServlet {
 
         } else if (keyString != null) {
              Todo todo = tb.findById((Integer.valueOf(keyString)+1));
-             System.out.println(keyString + "keyString");
-             System.out.println(todo.toString());
+               System.out.println(todo);
+           //  System.out.println(keyString + "keyString");        
             if (duedate != null) {
+                System.out.println(todo);
                  try {
                      todo.setDuedate(stringToDate(duedate));
                      tb.update(todo);
@@ -111,20 +104,28 @@ public class TodoServlet extends HttpServlet {
     }
 
     private Date stringToDate(String string) throws ParseException {
+        System.out.println("Häör " +string);
         DateFormat formatter;
         Date date;
         formatter = new SimpleDateFormat("yyyy-MM-dd");
         date = formatter.parse(string);
+        System.out.print(date);
         return date;
     }
     
     private String todoToJson(Todo todo){
         if (todo.getDone())
-         return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+todo.getDuedate()+"\""+
+         return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+dateToString(todo.getDuedate())+"\""+
                 ","+"\"Done\""+":\""+"checked"+"\"}";
         else
-             return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+todo.getDuedate()+"\""+
+             return "{"+"\"Description\""+":\""+todo.getDescription()+"\","+"\"Duedate\""+":\""+dateToString(todo.getDuedate())+"\""+
                 ","+"\"Done\""+":\""+""+"\"}";
+    }
+    
+    private String dateToString(Date date){
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = DATE_FORMAT.format(date);
+        return dateString;
     }
 
 }
