@@ -39,6 +39,8 @@ public class TodoFacadeREST extends AbstractFacade<Todo> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Todo entity) {
+        System.out.println("");
+        System.out.println(entity.getDescription() +" " + entity.getDuedate() + " " +entity.getDone());
         super.create(entity);
     }
 

@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#submitbtn').click(function (event) {
         alert(toJson());
         $.ajax({
-            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/webresources/todo',
+            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/webresources/todo',
             type: 'post',
              headers: {
             'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 function updateList() {
     $("#table tbody").empty();
-    $.getJSON("http://localhost:12683/SimonBorgstromIn2JavaBackend/webresources/todo", function (data) {
+    $.getJSON("http://localhost:8080/SimonBorgstromIn2JavaBackend/webresources/todo", function (data) {
         $.each(data, function (i, fromservlet) {
             var connected = '';
             if (fromservlet.done === true){
@@ -44,7 +44,7 @@ $(document).ready(function () {
         var text = prompt("Change date?", "new date");
         //  $(this).html(text);
         $.ajax({
-            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/webresources/todo/'+($(this).parent().index()+1),
+            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/webresources/todo/'+($(this).parent().index()+1),
             type: 'put',
             dataType: 'json',
             data: { 'duedate': text},
@@ -59,7 +59,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#table").delegate('#inlineCheckbox', 'click', function (e) {
         $.ajax({
-            url: 'http://localhost:12683/SimonBorgstromIn2JavaBackend/webresources/todo/'+($(this).parent().index()+1),
+            url: 'http://localhost:8080/SimonBorgstromIn2JavaBackend/webresources/todo/'+($(this).parent().index()+1),
             type: 'put',
             dataType: 'json',
             data: {

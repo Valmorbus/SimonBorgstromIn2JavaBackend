@@ -1,3 +1,6 @@
+drop table todo;
+
+
 create table todo(
 id int not null primary key  GENERATED ALWAYS AS IDENTITY
         (START WITH 1, INCREMENT BY 1), 

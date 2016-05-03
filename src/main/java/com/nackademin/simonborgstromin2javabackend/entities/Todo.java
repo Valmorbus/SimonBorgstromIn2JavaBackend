@@ -50,7 +50,7 @@ public class Todo implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @Basic(optional = false)
-    @NotNull
+ //   @NotNull
     @Column(name = "DUEDATE")
     @Temporal(TemporalType.DATE)
     private Date duedate;
