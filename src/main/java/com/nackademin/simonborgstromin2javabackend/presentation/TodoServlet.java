@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "TodoServlet", urlPatterns = {"/myservlet"})
 public class TodoServlet extends HttpServlet {
 
-    public static final String DESCRIPTION = "description";
+ /*   public static final String DESCRIPTION = "description";
     public static final String DUEDATE = "duedate";
     public static final String DONE = "done";
     public static final String KEY = "key";
@@ -127,5 +127,5 @@ public class TodoServlet extends HttpServlet {
         String dateString = DATE_FORMAT.format(date);
         return dateString;
     }
-
+*/
 }

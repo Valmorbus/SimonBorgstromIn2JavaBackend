@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,10 +51,11 @@ public class Todo implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @Basic(optional = false)
- //   @NotNull
+    @NotNull
     @Column(name = "DUEDATE")
-    @Temporal(TemporalType.DATE)
-    private Date duedate;
+  // @Temporal(TemporalType.DATE)
+    @Convert(converter = StringConverter.class)
+    private String duedate;
     @Column(name = "DONE")
     private Boolean done;
 
@@ -64,13 +66,13 @@ public class Todo implements Serializable {
         this.id = id;
     }
 
-    public Todo(Integer id, String description, Date duedate) {
+    public Todo(Integer id, String description, String duedate) {
         this.id = id;
         this.description = description;
         this.duedate = duedate;
     }
 
-    public Todo(String description, Date duedate, boolean done) {
+    public Todo(String description, String duedate, boolean done) {
       this.description = description;
       this.duedate = duedate;
       this.done = done;
@@ -93,11 +95,11 @@ public class Todo implements Serializable {
         this.description = description;
     }
 
-    public Date getDuedate() {
+    public String getDuedate() {
         return duedate;
     }
 
-    public void setDuedate(Date duedate) {
+    public void setDuedate(String duedate) {
         this.duedate = duedate;
     }
 

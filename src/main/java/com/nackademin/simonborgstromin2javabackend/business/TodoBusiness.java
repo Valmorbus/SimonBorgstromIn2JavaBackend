@@ -26,7 +26,7 @@ public class TodoBusiness {
     public void addTodo(Todo todo){
         tf.create(todo);
     }
-    public void addTodo(String description, Date date, boolean done){
+    public void addTodo(String description, String date, boolean done){
         Todo todo = new Todo(description, date, done);
         tf.create(todo);
     }
