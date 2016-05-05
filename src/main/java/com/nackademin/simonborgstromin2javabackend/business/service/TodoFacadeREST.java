@@ -48,6 +48,7 @@ public class TodoFacadeREST extends AbstractFacade<Todo> {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Todo entity) {
+          System.out.println(entity.getDescription() +" " + entity.getDuedate() + " " +entity.getDone());
         super.edit(entity);
     }
 
